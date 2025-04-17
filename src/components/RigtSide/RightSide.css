@@ -1,0 +1,119 @@
+.chat-container {
+    background: white;
+    width: 260px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100%;
+    max-height: 90vh;
+    margin: 20px 40px 40px 0px;
+  }
+  
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    max-height: 350px;
+    width: 250px;
+    scrollbar-width:none; /* Firefox */
+    border: 1px double #c2e4d7;
+  -ms-overflow-style: none;
+  background-color: #e8f5e8;
+  box-shadow: rgb(168, 192, 144) 0px 10px 20px 0px;
+         
+  padding: 2%;
+  border-radius: 25px;
+  }
+  
+  .chat-messages div {
+    margin: 8px 0;
+    padding: 5px;
+  }
+  
+  .user {
+    text-align: right;
+    color: #1a73e8;
+  }
+  
+  .bot {
+    text-align: left;
+    color: #4CAF50;
+  }
+  
+  .chat-input {
+    display: flex;
+    gap: 5px;
+
+  }
+  
+  .chat-input input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 15px;
+  width: 70%;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  background-color: #f9f9f9;
+}
+
+.chat-input input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    background-color: #bcf0ac;
+  }
+  
+  .chat-input button {
+    padding: 8px 16px;
+    background: #4CAF50;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .chat-input button:hover {
+    background: #45a049;
+  }
+  
+  /* Responsive Design */
+  
+  @media (max-width: 768px) {
+    .chat-container {
+      width: 100%;
+      border-radius: 0;
+      padding: 15px;
+    }
+  
+    .chat-input input,
+    .chat-input button {
+      font-size: 0.95rem;
+      padding: 6px 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .chat-container {
+      padding: 10px;
+    }
+  
+    .chat-input {
+      flex-direction: column;
+      gap: 8px;
+    }
+  
+    .chat-input input,
+    .chat-input button {
+      width: 100%;
+      font-size: 0.9rem;
+    }
+  
+    .chat-messages {
+      max-height: 300px;
+    }
+  }
+  

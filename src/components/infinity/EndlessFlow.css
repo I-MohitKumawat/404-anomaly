@@ -1,0 +1,32 @@
+.vertical-ticker-container {
+  height: 200px; /* adjust this for visible area */
+  overflow: hidden;
+  background: #f4f6f8;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  position: relative;
+}
+
+.vertical-ticker {
+  display: flex;
+  flex-direction: column;
+  animation: scroll-vertical 20s linear infinite;
+}
+
+.ticker-line {
+  font-size: 1.1rem;
+  color: #4CAF50;
+  font-weight: 500;
+  padding: 10px 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@keyframes scroll-vertical {
+  100% {
+    transform: translateY(0%);
+  }
+  0% {
+    transform: translateY(-50%);
+  }
+}

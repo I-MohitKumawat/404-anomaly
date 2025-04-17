@@ -1,0 +1,104 @@
+/* Reset basics */
+body, html, .home {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #f6fffd;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    background-color: #c9f1e8;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #0b5351;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-links li {
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li:hover {
+    color: #047d71;
+  }
+  
+  /* Hero Section */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .hero-text {
+    max-width: 500px;
+  }
+  
+  .hero-text h1 {
+    font-size: 2.5rem;
+    color: #0b5351;
+  }
+  
+  .hero-text p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    color: #555;
+  }
+  
+  .cta-btn {
+    margin-top: 2rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background-color: #0b5351;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .cta-btn:hover {
+    background-color: #047d71;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .hero-text, .hero-image {
+      width: 100%;
+      max-width: 100%;
+    }
+  
+    .nav-links {
+      display: none;
+    }
+  }
+  

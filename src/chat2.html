@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wellness Chatbot</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f4f6f8;
+      font-family: Arial, sans-serif;
+    }
+    .chat-container {
+      background: white;
+      width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      max-height: 350px;
+    }
+    .chat-messages div {
+      margin: 8px 0;
+    }
+    .user {
+      text-align: right;
+      color: #1a73e8;
+    }
+    .bot {
+      text-align: left;
+      color: #4CAF50;
+    }
+    .chat-input {
+      display: flex;
+      gap: 5px;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .chat-input button {
+      padding: 8px 16px;
+      background: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+    .chat-input button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="chat-container">
+  <div class="chat-messages" id="chat"></div>
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type here..." onkeypress="if(event.key==='Enter'){handleUserInput()}">
+    <button onclick="handleUserInput()">Send</button>
+  </div>
+</div>
+
+<script>
+  let chatLog = [];
+  let startTime = Date.now();
+  let questionIndex = 0;
+
+  const questions = [
+    "How are you feeling today on a scale of 1-5 (1: very bad, 5: very good)?",
+    "How often have you felt stressed this week?",
+    "Did you get enough sleep recently?",
+    "How was your mood during study sessions?",
+    "Did you feel overwhelmed with your tasks?",
+    "Have you taken breaks and relaxed today?",
+    "Did you talk to anyone about your feelings recently?",
+    "How was your focus during your study time?",
+    "Did you feel supported by friends or family?",
+    "Anything else you'd like to share about your mental state?"
+  ];
+
+  function handleUserInput() {
+    const inputField = document.getElementById('userInput');
+    const userText = inputField.value.trim();
+    if (!userText) return;
+
+    addMessage(userText, 'user');
+    chatLog.push({ role: 'user', text: userText, timestamp: new Date().toISOString() });
+
+    inputField.value = '';
+
+    setTimeout(() => {
+      let reply = getBotResponse(userText);
+      addMessage(reply, 'bot');
+      chatLog.push({ role: 'bot', text: reply, timestamp: new Date().toISOString() });
+
+      if (reply === "Thanks for your answers! I'm calculating your wellness score.") {
+        calculateWellnessScore();
+      }
+    }, 500);
+  }
+
+  function addMessage(text, sender) {
+    const msg = document.createElement('div');
+    msg.className = sender;
+    msg.textContent = (sender === 'user' ? "You: " : "Bot: ") + text;
+    document.getElementById('chat').appendChild(msg);
+    document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+  }
+
+  function getBotResponse(userText) {
+    if (questionIndex < questions.length) {
+      const nextQuestion = questions[questionIndex];
+      questionIndex++;
+      return nextQuestion;
+    } else {
+      return "Thanks for your answers! I'm calculating your wellness score.";
+    }
+  }
+
+  function calculateWellnessScore() {
+    let score = 0;
+    let answerCount = 0;
+
+    chatLog.forEach(entry => {
+      if (entry.role === 'user') {
+        const num = parseInt(entry.text);
+        if (!isNaN(num)) {
+          score += num;
+          answerCount++;
+        }
+      }
+    });
+
+    let result = "Wellness Score: " + (answerCount ? (score / answerCount).toFixed(2) : "Not enough numeric answers.");
+    addMessage(result, 'bot');
+
+    // Example: log total interaction time
+    const timeSpent = ((Date.now() - startTime) / 1000).toFixed(1);
+    console.log(`Session Time: ${timeSpent}s`);
+    console.log(`Full Log:`, chatLog);
+  }
+
+  // Log clicks to capture user activity
+  document.addEventListener('click', (event) => {
+    chatLog.push({
+      event: 'click',
+      target: event.target.tagName,
+      time: new Date().toISOString()
+    });
+  });
+
+  // Start conversation
+  window.onload = function() {
+    setTimeout(() => {
+      addMessage("Hi, I’m your wellness assistant! Ready to check in?", 'bot');
+      chatLog.push({ role: 'bot', text: "Hi, I’m your wellness assistant! Ready to check in?", timestamp: new Date().toISOString() });
+    }, 500);
+  };
+</script>
+
+</body>
+</html>
