@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign in to GitHub</title>
+  <style>
+    body {
+      background-color:rgb(229, 243, 222);
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-box {
+      background-color: rgb(54, 184, 139);
+      padding: 30px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(25, 147, 135, 0.5);
+      width: 320px;
+    }
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 16px 0;
+      border: 1px solid #0f766e;
+      border-radius: 5px;
+      background-color: #c5f4f4;
+      color: white;
+    }
+    .btn {
+      width: 100%;
+      background-color: #34342d;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background-color: #323c36;
+    }
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .forgot {
+      text-align: right;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+    .forgot a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-size: 0.9em;
+    }
+    .logo {
+      margin-bottom: 20px;
+      font-size: 30px;
+      /* background-color:#8660de ; */
+      padding: 1%;
+      
+      border-radius: 15px;
+    }
+    .logo span{
+      font-weight: 500;
+      color: black;
+    }
+    .logo span span{
+      color: orangered;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <span>Thryv<span>U</span></span>
+  </div>
+
+  <div class="login-box">
+    <h2>Sign in to ThryvU</h2>
+    <form onsubmit="return validateForm(event)">
+      <label for="userid">Username or email address</label>
+      <input type="text" id="userid" name="userid" required />
+      
+      <label for="password">Password</label>
+      <!-- <div class="forgot"><a href="#">Forgot password?</a></div> -->
+      <input type="password" id="password" name="password" required />
+      
+      <button class="btn" type="submit">Sign in</button>
+      <div class="error" id="error-msg"></div>
+    </form>
+  </div>
+
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
+      const userId = document.getElementById('userid').value;
+      const password = document.getElementById('password').value;
+      const userid = 'test1234';
+      const userpassword = '1';
+      
+      if (userId === userid && password === userpassword) {
+        window.location.href = './questionaires.html';
+        return true;
+      } else {
+        document.getElementById('error-msg').textContent = "Incorrect username or password.";
+        return false;
+      }
+    }
+  </script>
+
+</body>
+</html>

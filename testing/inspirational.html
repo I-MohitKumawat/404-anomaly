@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThryvU</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background: linear-gradient(to right, #e3f2fd, #ffffff);
+    }
+
+    .sidebar {
+      width: 100px;
+      background-color: #f0f4f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      transition: width 0.3s;
+      position: relative;
+      border-right: 2px solid #ccc;
+    }
+
+    .sidebar:hover {
+      width: 200px;
+    }
+
+    .sidebar .logo {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 60px;
+    }
+
+    .sidebar .logo::first-letter {
+      color: black;
+    }
+
+    .sidebar .logo span {
+      color: orange;
+    }
+
+    .sidebar a {
+      margin: 30px 0;
+      text-align: center;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .sidebar img {
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+    }
+
+    .sidebar a::after {
+      content: 'sdfghj';
+      position: absolute;
+      left: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0;
+      white-space: nowrap;
+      transition: opacity 0.3s;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .sidebar:hover a::after {
+      opacity: 1;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background-color: white;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      width: 100%;
+    }
+
+    .card {
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card span {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .stress {
+      background: linear-gradient(to right, #a18cd1, #fbc2eb);
+    }
+
+    .fitness {
+      background: linear-gradient(to right, #f5576c, #f093fb);
+    }
+
+    .study-stress {
+      background: linear-gradient(to right, #f6d365, #fda085);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="logo">Thryv<span>U</span></div>
+    <a href="f.html"><img src="https://via.placeholder.com/35?text=1" alt="1"></a>
+    <a href="g.html"><img src="https://via.placeholder.com/35?text=2" alt="2"></a>
+    <a href="h.html"><img src="https://via.placeholder.com/35?text=3" alt="3"></a>
+  </div>
+
+  <div class="main-content">
+    <div class="card-container">
+      <div class="card stress">
+        <span id="stressValue">70%</span>
+        Stress
+      </div>
+      <div class="card fitness">
+        <span id="fitnessValue">80%</span>
+        Fitness
+      </div>
+      <div class="card study-stress">
+        <span id="studyStressValue">60%</span>
+        Study Stress
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Assume these values are passed from the previous page via a JavaScript object named wertyu
+    const wertyu = {
+      stress: "68%",
+      fitness: "76%",
+      studyStress: "52%"
+    };
+
+    document.getElementById("stressValue").textContent = wertyu.stress;
+    document.getElementById("fitnessValue").textContent = wertyu.fitness;
+    document.getElementById("studyStressValue").textContent = wertyu.studyStress;
+  </script>
+</body>
+
+</html>

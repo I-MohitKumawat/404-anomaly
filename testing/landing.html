@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Higher Balance Institute</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #2d2d2d;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-image: url('https://goodhomes.wwmindia.com/content/2022/mar/maxalto-available-at-scala-home-1-library-resize1648614793.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      height: 100vh;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      background: white;
+      color: black;
+      padding: 12px 24px;
+      font-weight: 600;
+      border-radius: 9999px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #e5e5e5;
+    }
+
+    /* Tagline Section */
+    .tagline {
+      text-align: center;
+      padding: 80px 20px;
+      background-color: #fff;
+    }
+
+    .tagline h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .tagline h2 span.orange {
+      color: #f97316;
+    }
+
+    .tagline h2 span.purple {
+      color: #7e22ce;
+    }
+
+    .tagline p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.125rem;
+      color: #666;
+    }
+
+    /* Free Training Cards */
+    .cards {
+      background: #e8f7ff;
+      padding: 80px 20px;
+    }
+
+    .cards h3 {
+      text-align: center;
+      font-size: 1.75rem;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+    
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .card {
+        background: cyan;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 24px;
+        text-align: center;
+    }
+    
+    .card img {
+        border-radius: 8px;
+        width: 100%;
+        height: auto;
+        margin-bottom: 16px;
+    }
+
+    .card h4 {
+        font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+    
+    @media (min-width: 768px) {
+        .hero h1 {
+            font-size: 3rem;
+        }
+        
+        .tagline h2 {
+            font-size: 2.5rem;
+        }
+    }
+    .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 24px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .card:hover {
+        transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  background-color: #c9f1e8;
+}
+
+</style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1><i>"It's okay to pause — your well-being matters"</i></h1>
+      <p>Your well-being, simplified.
+        A platform designed to help students track and improve mental, physical, social, and academic health — all in one place.
+      </p>
+      <a href="signin.html" class="btn" onclick="startApp()">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Tagline -->
+  <section class="tagline">
+    <h2>
+        Empower <span class="orange">students,</span><br />
+      <span class="purple">one mind</span> at a time!
+    </h2>
+    <p>
+        Support the journey to a healthier mind, body, and academic life through mindful habits, self-care, and personal growth. Join thousands unlocking their full potential — inside and outside the classroom.
+  </section>
+
+  <!-- Free Training Section -->
+  <section class="cards">
+    <h3>Our Goals</h3>
+    <div class="card-container">
+
+      <div class="card">
+        <!-- <img src="https://via.placeholder.com/300x180" alt="Training 1" /> -->
+        <h4>Mental Well-Being</h4>
+        <p>A healthy mind is the foundation of a healthy life.</p>
+      </div>
+
+      <div class="card">
+        <!-- <img src="https://via.placeholder.com/300x180" alt="Training 2" /> -->
+        <h4>Physical Well-Being</h4>
+        <p>Your body supports everything you do — treat it with care.</p>
+      </div>
+
+      <div class="card">
+        <!-- <img src="https://via.placeholder.com/300x180" alt="Training 3" /> -->
+        <h4>Academic Vitality</h4>
+        <p>Success starts with balance, not burnout.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    
+  </script>
+
+</body>
+</html>

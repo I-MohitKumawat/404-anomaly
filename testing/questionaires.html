@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stress Questionnaire</title>
+  <style>
+    body {
+      background-color: #e6e9d6;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #app {
+      background-color: #f0f0f0;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+    }
+    h2, label, p {
+      color: #333;
+    }
+    .btn {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    .btn:hover {
+      background-color: #45a049;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .options label {
+      display: block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      margin: 8px auto;
+      max-width: 300px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .options input[type="radio"] {
+      display: none;
+    }
+    .options label:hover {
+      background-color: #45a049;
+    }
+    .countdown {
+      font-size: 20px;
+      color: #FF5733;
+      margin-top: 10px;
+    }
+  </style>
+  <script>
+    let currentQuestion = 0;
+    let stressVal = 0;
+    let AcademicstressVal = 0;
+    let physcialstressVal = 0;
+
+    const questions = [
+      // Phase 1
+      { q: "How often have you been upset because something that happened unexpectedly?", options: [0, 1, 2, 3, 4], phase: 'stress' },
+      { q: "How often have you felt that you were unable to control the important things in your life?", options: [0, 1, 2, 3, 4], phase: 'stress' },
+      { q: "How often have you felt nervous and “stressed”?", options: [0, 1, 2, 3, 4], phase: 'stress' },
+      { q: "How often have you felt confident about your ability to handle your personal problems?", options: [4, 3, 2, 1, 0], phase: 'stress' },
+      { q: "How often have you felt that things were going your way?", options: [4, 3, 2, 1, 0], phase: 'stress' },
+
+      // Phase 2
+      { q: "Pressure to get good grades", options: [1, 2, 3, 4, 5], phase: 'academic' },
+      { q: "Heavy workload or too many assignments", options: [1, 2, 3, 4, 5], phase: 'academic' },
+      { q: "Competition with peers", options: [1, 2, 3, 4, 5], phase: 'academic' },
+      { q: "Fear of failing exams", options: [1, 2, 3, 4, 5], phase: 'academic' },
+      { q: "Lack of time for studying", options: [1, 2, 3, 4, 5], phase: 'academic' },
+
+      // Phase 3
+      { q: "Do you often feel physically tired or drained, even after a full night's sleep?", options: [1, 2, 3, 4], phase: 'physical' },
+      { q: "Do you experience headaches, muscle tension, or unexplained body aches?", options: [1, 2, 3, 4], phase: 'physical' },
+      { q: "Do you have trouble falling asleep or staying asleep due to stress?", options: [1, 2, 3, 4], phase: 'physical' },
+      { q: "Do you notice changes in your eating habits (overeating or loss of appetite) during stressful periods?", options: [1, 2, 3, 4], phase: 'physical' },
+      { q: "Do you experience physical reactions like rapid heartbeat, sweating, or shortness of breath when under pressure?", options: [1, 2, 3, 4], phase: 'physical' },
+    ];
+
+    function start() {
+      document.getElementById('app').innerHTML = '';
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      const container = document.getElementById('app');
+      container.innerHTML = `<div class="question">
+        <h2>${q.q}</h2>
+        <div class="options">
+          ${q.options.map((val, i) => `<label><input type="radio" name="option" value="${val}" onchange="next(${val})"> ${getLabel(val, q.phase)}</label>`).join('')}
+        </div>
+      </div>`;
+    }
+
+    function getLabel(val, phase) {
+      const phase1 = ["Never", "Almost Never", "Sometimes", "Fairly Often", "Very Often"];
+      const phase2 = ["No Stress", "Slight Stress", "Moderate Stress", "High Stress", "Extreme Stress"];
+      const phase3 = ["Never", "Occasionally", "Often", "Almost Always"];
+
+      if (phase === 'stress') return phase1[val];
+      if (phase === 'academic') return phase2[val - 1];
+      if (phase === 'physical') return phase3[val - 1];
+    }
+
+    function next(value) {
+      const phase = questions[currentQuestion].phase;
+
+      if (phase === 'stress') stressVal += value;
+      if (phase === 'academic') AcademicstressVal += value;
+      if (phase === 'physical') physcialstressVal += value;
+
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        showRedirectMessage();
+      }
+    }
+
+    function showRedirectMessage() {
+      const container = document.getElementById('app');
+      container.innerHTML = `
+        <h2>Customization Completed!</h2>
+         <p class="result">Your Current Wellness Score : <strong>${stressVal}</strong></p>
+        <p>You will be redirected to Dashboard in <span class="countdown" id="countdown">5</span> seconds...</p>
+      `;
+      startCountdown(5);
+    }
+
+    function startCountdown(seconds) {
+      let counter = seconds;
+      const countdownElem = document.getElementById('countdown');
+      const interval = setInterval(() => {
+        counter--;
+        countdownElem.textContent = counter;
+        if (counter === 0) {
+          clearInterval(interval);
+          window.location.href = 'http://localhost:3000/';
+        }
+      }, 1000);
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <h2>Let's customize your profile.</h2>
+    <button class="btn" onclick="start()">Start</button>
+  </div>
+</body>
+</html>
